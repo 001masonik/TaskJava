@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.35" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #2C3E50;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxproject.MainController">
+    <items>
+        <VBox spacing="10.0">
+            <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+            <Label style="-fx-font-weight: bold; -fx-font-size: 16;" text="Новий договір" textFill="WHITE" />
+            <Label text="Дата укладання:" textFill="WHITE" />
+            <DatePicker fx:id="datePicker" prefWidth="Infinity" />
+            <Label text="Сума страхування:" textFill="WHITE" />
+            <TextField fx:id="txtAmount" onKeyReleased="#handleCalculatePremium" promptText="Введіть суму" />
+            <Label text="Тарифна ставка (%):" textFill="WHITE" />
+            <TextField fx:id="txtRate" onKeyReleased="#handleCalculatePremium" promptText="Введіть ставку" />
+            <Label text="Страхова премія:" textFill="WHITE" />
+            <Label fx:id="lblPremium" style="-fx-font-weight: bold;" text="0.00" textFill="#ecf0f1" />
+            <Label text="Філія:" textFill="WHITE" />
+            <ComboBox fx:id="comboBranch" prefWidth="Infinity" />
+            <Label text="Вид страхування:" textFill="WHITE" />
+            <ComboBox fx:id="comboType" prefWidth="Infinity" />
+            <Button onAction="#handleSaveContract" prefWidth="Infinity" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Зберегти договір" />
+            <Button text="Експорт у .txt" prefWidth="Infinity" onAction="#handleExport" />
+        </VBox>
+        <VBox spacing="10.0">
+            <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <TextField fx:id="txtSearch" promptText="Пошук..." style="-fx-background-color: ECF0F1;" HBox.hgrow="ALWAYS" />
+                <ComboBox fx:id="comboFilterBranch" promptText="Фільтр філії" />
+            </HBox>
+            <TableView fx:id="tableContracts" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colId" prefWidth="50" text="№" />
+                    <TableColumn fx:id="colDate" prefWidth="100" text="Дата" />
+                    <TableColumn fx:id="colAmount" prefWidth="120" text="Сума" />
+                    <TableColumn fx:id="colRate" prefWidth="80" text="Ставка" />
+                    <TableColumn fx:id="colBranch" prefWidth="150" text="Філія" />
+                    <TableColumn fx:id="colType" prefWidth="150" text="Вид" />
+                </columns>
+            </TableView>
+        </VBox>
+    </items>
+</SplitPane>
